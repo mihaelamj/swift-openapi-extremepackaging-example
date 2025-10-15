@@ -14,23 +14,51 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/realm/SwiftLint", exact: "0.52.3"),
     ],
-    targets: [
-        .target(
+    targets: {
+        
+        let sharedModelsTarget = Target.target(
+            name: "SharedModels",
+            dependencies: [],
+        )
+        
+        let appFeatureTarget = Target.target(
             name: "AppFeature",
             dependencies: [
-                "SharedModels",
+                "SharedModels"
             ]
-        ),
-        .testTarget(
+        )
+        
+        let appFeatureTestsTarget = Target.testTarget(
             name: "AppFeatureTests",
             dependencies: [
                 "AppFeature"
             ]
-        ),
-        .target(
-            name: "SharedModels"
         )
-    ]
+        
+        let yamlMergerTarget = Target.target(
+            name: "YAMLMerger",
+            dependencies: []
+        )
+        
+        let yamlMergerTestsTarget = Target.testTarget(
+            name: "YAMLMergerTests",
+            dependencies: [
+                "YAMLMerger"
+            ],
+            resources: [
+                .copy("Schema")
+            ]
+        )
+        
+        return [
+            sharedModelsTarget,
+            appFeatureTarget,
+            appFeatureTestsTarget,
+            yamlMergerTarget,
+            yamlMergerTestsTarget
+        ]
+        
+    }()
 )
 
 // Inject base plugins into each target
