@@ -72,7 +72,12 @@ let package = Package(
         let sharedApiModelsTestsTarget = Target.testTarget(
             name: "SharedApiModelsTests",
             dependencies: [
-                "SharedApiModels"
+                "SharedApiModels",
+                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+                .product(name: "OpenAPIAsyncHTTPClient", package: "swift-openapi-async-http-client"),
+                .product(name: "AsyncHTTPClient", package: "async-http-client"),
+                .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
+                .product(name: "Vapor", package: "vapor")
             ]
         )
         
