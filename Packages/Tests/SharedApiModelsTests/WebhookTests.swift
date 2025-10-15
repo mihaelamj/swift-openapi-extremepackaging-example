@@ -126,9 +126,6 @@ final class WebhookTests: XCTestCase {
         }
     }
 
-    // MARK: - Webhook Event Type Tests
-
-
     // MARK: - Schema Codable Tests
 
     func testCommentSchemaIsEncodable() throws {
