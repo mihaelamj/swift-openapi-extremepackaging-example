@@ -11,6 +11,10 @@ let package = Package(
     products: [
         .singleTargetLibrary("AppFeature"),
         .singleTargetLibrary("SharedApiModels"),
+        
+        .executable(name: "apiserver", targets: ["ApiServer"]),
+        .singleTargetLibrary("ApiClient")
+        
     ],
     dependencies: [
         .package(url: "https://github.com/realm/SwiftLint", from: "0.57.0"),
@@ -81,15 +85,66 @@ let package = Package(
             ]
         )
         
-        return [
-            sharedModelsTarget,
-            appFeatureTarget,
-            appFeatureTestsTarget,
+        // MARK: API -
+        
+        let apiServerTarget = Target.executableTarget(
+            name: "ApiServer",
+            dependencies: [
+                "SharedApiModels",
+                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+                .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
+                .product(name: "Vapor", package: "vapor")
+            ]
+        )
+        
+        let apiServerTestsTarget = Target.testTarget(
+            name: "ApiServerTests",
+            dependencies: ["ApiServer"]
+        )
+        
+        let apiClientTarget = Target.target(
+            name: "ApiClient",
+            dependencies: [
+                "SharedApiModels",
+                .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+                .product(name: "OpenAPIAsyncHTTPClient", package: "swift-openapi-async-http-client")
+            ]
+        )
+        
+        let apiClientTestsTarget = Target.testTarget(
+            name: "ApiClientTests",
+            dependencies: [
+                "SharedApiModels",
+                "ApiClient"
+            ]
+        )
+        
+        // MARK: Targets -
+        
+        let helperTargets: [Target] = [
             yamlMergerTarget,
-            yamlMergerTestsTarget,
-            sharedApiModelsTarget,
-            sharedApiModelsTestsTarget
+            yamlMergerTestsTarget
         ]
+        
+        let apiTargets: [Target] = [
+            sharedApiModelsTarget,
+            sharedApiModelsTestsTarget,
+            apiServerTarget,
+            apiServerTestsTarget,
+            apiClientTarget,
+            apiClientTestsTarget,
+        ]
+        
+        let modelTargets: [Target] = [
+            sharedModelsTarget
+        ]
+        
+        let uiTargets: [Target] = [
+            appFeatureTarget,
+            appFeatureTestsTarget
+        ]
+        
+        return helperTargets + apiTargets + modelTargets + uiTargets
         
     }()
 )
