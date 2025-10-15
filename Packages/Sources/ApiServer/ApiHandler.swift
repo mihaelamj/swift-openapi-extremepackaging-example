@@ -3,71 +3,27 @@ import OpenAPIRuntime
 import SharedApiModels
 
 struct ApiHandler: APIProtocol {
-    func getUserById(_ input: SharedApiModels.Operations.GetUserById.Input) async throws -> SharedApiModels.Operations.GetUserById.Output {
-        fatalError()
-    }
+    // All implementations are in separate ApiHandler_*.swift files as extensions
     
-    func createUser(_ input: SharedApiModels.Operations.CreateUser.Input) async throws -> SharedApiModels.Operations.CreateUser.Output {
-        fatalError()
-    }
-    
-    func getAllUsers(_ input: SharedApiModels.Operations.GetAllUsers.Input) async throws -> SharedApiModels.Operations.GetAllUsers.Output {
-        fatalError()
-    }
-    
-    func getTodoById(_ input: SharedApiModels.Operations.GetTodoById.Input) async throws -> SharedApiModels.Operations.GetTodoById.Output {
-        fatalError()
-    }
-    
-    func createTodo(_ input: SharedApiModels.Operations.CreateTodo.Input) async throws -> SharedApiModels.Operations.CreateTodo.Output {
-        fatalError()
-    }
-    
-    func getAllTodos(_ input: SharedApiModels.Operations.GetAllTodos.Input) async throws -> SharedApiModels.Operations.GetAllTodos.Output {
-        fatalError()
-    }
-    
-    func getProductById(_ input: SharedApiModels.Operations.GetProductById.Input) async throws -> SharedApiModels.Operations.GetProductById.Output {
-        fatalError()
-    }
-    
-    func createProduct(_ input: SharedApiModels.Operations.CreateProduct.Input) async throws -> SharedApiModels.Operations.CreateProduct.Output {
-        fatalError()
-    }
-    
-    func getAllProducts(_ input: SharedApiModels.Operations.GetAllProducts.Input) async throws -> SharedApiModels.Operations.GetAllProducts.Output {
-        fatalError()
-    }
-    
-    func getPostById(_ input: SharedApiModels.Operations.GetPostById.Input) async throws -> SharedApiModels.Operations.GetPostById.Output {
-        fatalError()
-    }
-    
-    func createPost(_ input: SharedApiModels.Operations.CreatePost.Input) async throws -> SharedApiModels.Operations.CreatePost.Output {
-        fatalError()
-    }
-    
-    func getAllPosts(_ input: SharedApiModels.Operations.GetAllPosts.Input) async throws -> SharedApiModels.Operations.GetAllPosts.Output {
-        fatalError()
-    }
-    
-    func getCommentById(_ input: SharedApiModels.Operations.GetCommentById.Input) async throws -> SharedApiModels.Operations.GetCommentById.Output {
-        fatalError()
-    }
-    
-    func getAllComments(_ input: SharedApiModels.Operations.GetAllComments.Input) async throws -> SharedApiModels.Operations.GetAllComments.Output {
-        fatalError()
-    }
-    
-    func getCartById(_ input: SharedApiModels.Operations.GetCartById.Input) async throws -> SharedApiModels.Operations.GetCartById.Output {
-        fatalError()
-    }
-    
-    func getAllCarts(_ input: SharedApiModels.Operations.GetAllCarts.Input) async throws -> SharedApiModels.Operations.GetAllCarts.Output {
-        fatalError()
-    }
-    
-    func loginUser(_ input: SharedApiModels.Operations.LoginUser.Input) async throws -> SharedApiModels.Operations.LoginUser.Output {
-        fatalError()
-    }
+    /**
+
+     1. ApiHandler_loginUser.swift - Authentication with mock credentials validation (username: "emilys",
+     password: "emilyspass")
+     2. ApiHandler_getAllUsers.swift - Returns paginated list of mock users (supports limit/skip)
+     3. ApiHandler_getUserById.swift - Returns a single user by ID (returns 404 for IDs > 100)
+     4. ApiHandler_createUser.swift - Creates a new user and returns 201 Created
+     5. ApiHandler_getAllPosts.swift - Returns paginated list of mock posts with tags and reactions
+     6. ApiHandler_getPostById.swift - Returns a single post by ID
+     7. ApiHandler_createPost.swift - Creates a new post and returns 201 Created
+     8. ApiHandler_getAllProducts.swift - Returns paginated list of mock products with pricing, ratings
+     9. ApiHandler_getProductById.swift - Returns a single product by ID
+     10. ApiHandler_createProduct.swift - Creates a new product and returns 201 Created
+     11. ApiHandler_getAllTodos.swift - Returns paginated list of mock todos
+     12. ApiHandler_getTodoById.swift - Returns a single todo by ID
+     13. ApiHandler_createTodo.swift - Creates a new todo and returns 201 Created
+     14. ApiHandler_getAllComments.swift - Returns paginated list of mock comments
+     15. ApiHandler_getCommentById.swift - Returns a single comment by ID
+     16. ApiHandler_getAllCarts.swift - Returns paginated list of mock shopping carts with products
+     17. ApiHandler_getCartById.swift - Returns a single cart by ID with product details  
+     */
 }
