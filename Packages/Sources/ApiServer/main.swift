@@ -9,72 +9,95 @@ import SharedApiModels
 // Function to print curl commands for each endpoint
 func printCurlCommands() {
     let baseUrl = "http://localhost:8080"
-    
+
+    print("\n🚀 ApiServer is running at \(baseUrl)")
     print("\n=== API ENDPOINTS CURL COMMANDS ===\n")
-    
-//    // Mock Get Current User
-//    print("1. Get Current User:")
-//    print("   curl -X GET \(baseUrl)/mocks/user/me -H \"Accept: application/json\"\n")
-//    
-//    // Mock Get User Image
-//    print("2. Get User Image:")
-//    print("   curl -X GET \(baseUrl)/mocks/user/images/img-123 -H \"Accept: image/jpeg\" --output image.jpg\n")
-//    
-//    // Mock Set Preferred Name
-//    print("3. Set Preferred Name:")
-//    print("   curl -X POST \(baseUrl)/mocks/user/preferred-name \\")
-//    print("        -H \"Content-Type: application/json\" \\")
-//    print("        -H \"Accept: application/json\" \\")
-//    print("        -d '{\"text\":\"Call me John\"}'\n")
-//    
-//    // Mock Set Biometrics
-//    print("4. Set Biometrics:")
-//    print("   curl -X POST \(baseUrl)/mocks/user/biometrics \\")
-//    print("        -H \"Content-Type: application/json\" \\")
-//    print("        -H \"Accept: application/json\" \\")
-//    print("        -d \"{\\\"text\\\":\\\"I'm 82kg, 183cm, born 15 June 1992\\\"}\"\n")
-//    
-//    // Mock Get Plan Status Summary
-//    print("5. Get Plan Status Summary:")
-//    print("   curl -X GET \"\(baseUrl)/mocks/plans/status?date=2025-05-04&timezone=America/Los_Angeles\" \\")
-//    print("        -H \"Accept: application/json\"\n")
-//    
-//    // Mock Read Track Workout
-//    print("6. Read Track Workout:")
-//    print("   curl -X GET \(baseUrl)/mocks/track/workout/workout-123 \\")
-//    print("        -H \"Accept: application/json\"\n")
-//    
-//    // Mock Read Track Meal
-//    print("7. Read Track Meal:")
-//    print("   curl -X GET \(baseUrl)/mocks/track/meal/meal-123 \\")
-//    print("        -H \"Accept: application/json\"\n")
-//    
-//    // Mock Read Many Messages
-//    print("8. Read Many Messages:")
-//    print("   curl -X GET \(baseUrl)/mocks/messages \\")
-//    print("        -H \"Accept: application/json\"\n")
-//    
-//    // Mock Chat Agent Responses Sync
-//    print("9. Chat Agent Responses Sync:")
-//    print("   curl -X POST \(baseUrl)/mocks/messages/agent-responses-sync \\")
-//    print("        -H \"Content-Type: application/json\" \\")
-//    print("        -H \"Accept: application/json\" \\")
-//    print("        -d '{\"content\":\"Tell me about my nutrition plan\"}'\n")
-//    
-//    // Mock Chat Agent Responses
-//    print("10. Chat Agent Responses:")
-//    print("    curl -X POST \(baseUrl)/mocks/messages/agent-responses \\")
-//    print("         -H \"Content-Type: application/json\" \\")
-//    print("         -H \"Accept: text/event-stream\" \\")
-//    print("         -d '{\"content\":\"What workouts should I do today?\"}'\n")
-//    
-//    // Mock Chat Agent Responses Multipart
-//    print("11. Chat Agent Responses Multipart:")
-//    print("    curl -X POST \(baseUrl)/mocks/messages/agent-responses-multipart \\")
-//    print("         -H \"Accept: text/event-stream\" \\")
-//    print("         -F \"content=How many calories in this meal?\" \\")
-//    print("         -F \"images=@/path/to/meal-image.jpg\"\n")
-    
+
+    // Authentication
+    print("1. Login User:")
+    print("   curl -X POST \(baseUrl)/auth/login \\")
+    print("        -H \"Content-Type: application/json\" \\")
+    print("        -H \"Accept: application/json\" \\")
+    print("        -d '{\"username\":\"emilys\",\"password\":\"emilyspass\"}'\n")
+
+    // Users
+    print("2. Get All Users:")
+    print("   curl -X GET \"\(baseUrl)/users?limit=10&skip=0\" \\")
+    print("        -H \"Accept: application/json\"\n")
+
+    print("3. Get User By ID:")
+    print("   curl -X GET \(baseUrl)/users/1 \\")
+    print("        -H \"Accept: application/json\"\n")
+
+    print("4. Create User:")
+    print("   curl -X POST \(baseUrl)/users \\")
+    print("        -H \"Content-Type: application/json\" \\")
+    print("        -H \"Accept: application/json\" \\")
+    print("        -d '{\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john@example.com\"}'\n")
+
+    // Posts
+    print("5. Get All Posts:")
+    print("   curl -X GET \"\(baseUrl)/posts?limit=10&skip=0\" \\")
+    print("        -H \"Accept: application/json\"\n")
+
+    print("6. Get Post By ID:")
+    print("   curl -X GET \(baseUrl)/posts/1 \\")
+    print("        -H \"Accept: application/json\"\n")
+
+    print("7. Create Post:")
+    print("   curl -X POST \(baseUrl)/posts \\")
+    print("        -H \"Content-Type: application/json\" \\")
+    print("        -H \"Accept: application/json\" \\")
+    print("        -d '{\"title\":\"My Post\",\"body\":\"Post content\",\"userId\":1}'\n")
+
+    // Products
+    print("8. Get All Products:")
+    print("   curl -X GET \"\(baseUrl)/products?limit=10&skip=0\" \\")
+    print("        -H \"Accept: application/json\"\n")
+
+    print("9. Get Product By ID:")
+    print("   curl -X GET \(baseUrl)/products/1 \\")
+    print("        -H \"Accept: application/json\"\n")
+
+    print("10. Create Product:")
+    print("    curl -X POST \(baseUrl)/products \\")
+    print("         -H \"Content-Type: application/json\" \\")
+    print("         -H \"Accept: application/json\" \\")
+    print("         -d '{\"title\":\"New Product\",\"price\":99.99}'\n")
+
+    // Todos
+    print("11. Get All Todos:")
+    print("    curl -X GET \"\(baseUrl)/todos?limit=10\" \\")
+    print("         -H \"Accept: application/json\"\n")
+
+    print("12. Get Todo By ID:")
+    print("    curl -X GET \(baseUrl)/todos/1 \\")
+    print("         -H \"Accept: application/json\"\n")
+
+    print("13. Create Todo:")
+    print("    curl -X POST \(baseUrl)/todos \\")
+    print("         -H \"Content-Type: application/json\" \\")
+    print("         -H \"Accept: application/json\" \\")
+    print("         -d '{\"todo\":\"Buy groceries\",\"completed\":false,\"userId\":1}'\n")
+
+    // Comments
+    print("14. Get All Comments:")
+    print("    curl -X GET \"\(baseUrl)/comments?limit=10\" \\")
+    print("         -H \"Accept: application/json\"\n")
+
+    print("15. Get Comment By ID:")
+    print("    curl -X GET \(baseUrl)/comments/1 \\")
+    print("         -H \"Accept: application/json\"\n")
+
+    // Carts
+    print("16. Get All Carts:")
+    print("    curl -X GET \"\(baseUrl)/carts?limit=10\" \\")
+    print("         -H \"Accept: application/json\"\n")
+
+    print("17. Get Cart By ID:")
+    print("    curl -X GET \(baseUrl)/carts/1 \\")
+    print("         -H \"Accept: application/json\"\n")
+
     print("=== END OF API ENDPOINTS ===\n")
 }
 

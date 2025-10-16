@@ -6,84 +6,26 @@ import AsyncHTTPClient
 import NIOCore
 
 struct ApiHandler: APIProtocol {
-    
-    func getUserById(_ input: SharedApiModels.Operations.GetUserById.Input) async throws -> SharedApiModels.Operations.GetUserById.Output {
-        // Create an HTTP client-backed OpenAPI client targeting the configured server
-        let httpClient = HTTPClient(eventLoopGroupProvider: .singleton)
-        // Use syncShutdown() in defer because `await` is not allowed in a defer block.
-        defer { Task { try? await httpClient.shutdown() } }
-        let client = Client(
-            serverURL: try Servers.Server1.url(),
-            transport: AsyncHTTPClientTransport(configuration: .init(client: httpClient))
-        )
+    // All implementations are in separate ApiClient_*.swift files as extensions
 
-        // Forward the call to the generated client and return its output
-        let output = try await client.getUserById(input)
-        return output
-    }
-    
-    func createUser(_ input: SharedApiModels.Operations.CreateUser.Input) async throws -> SharedApiModels.Operations.CreateUser.Output {
-        fatalError()
-    }
-    
-    func getAllUsers(_ input: SharedApiModels.Operations.GetAllUsers.Input) async throws -> SharedApiModels.Operations.GetAllUsers.Output {
-        fatalError()
-    }
-    
-    func getTodoById(_ input: SharedApiModels.Operations.GetTodoById.Input) async throws -> SharedApiModels.Operations.GetTodoById.Output {
-        fatalError()
-    }
-    
-    func createTodo(_ input: SharedApiModels.Operations.CreateTodo.Input) async throws -> SharedApiModels.Operations.CreateTodo.Output {
-        fatalError()
-    }
-    
-    func getAllTodos(_ input: SharedApiModels.Operations.GetAllTodos.Input) async throws -> SharedApiModels.Operations.GetAllTodos.Output {
-        fatalError()
-    }
-    
-    func getProductById(_ input: SharedApiModels.Operations.GetProductById.Input) async throws -> SharedApiModels.Operations.GetProductById.Output {
-        fatalError()
-    }
-    
-    func createProduct(_ input: SharedApiModels.Operations.CreateProduct.Input) async throws -> SharedApiModels.Operations.CreateProduct.Output {
-        fatalError()
-    }
-    
-    func getAllProducts(_ input: SharedApiModels.Operations.GetAllProducts.Input) async throws -> SharedApiModels.Operations.GetAllProducts.Output {
-        fatalError()
-    }
-    
-    func getPostById(_ input: SharedApiModels.Operations.GetPostById.Input) async throws -> SharedApiModels.Operations.GetPostById.Output {
-        fatalError()
-    }
-    
-    func createPost(_ input: SharedApiModels.Operations.CreatePost.Input) async throws -> SharedApiModels.Operations.CreatePost.Output {
-        fatalError()
-    }
-    
-    func getAllPosts(_ input: SharedApiModels.Operations.GetAllPosts.Input) async throws -> SharedApiModels.Operations.GetAllPosts.Output {
-        fatalError()
-    }
-    
-    func getCommentById(_ input: SharedApiModels.Operations.GetCommentById.Input) async throws -> SharedApiModels.Operations.GetCommentById.Output {
-        fatalError()
-    }
-    
-    func getAllComments(_ input: SharedApiModels.Operations.GetAllComments.Input) async throws -> SharedApiModels.Operations.GetAllComments.Output {
-        fatalError()
-    }
-    
-    func getCartById(_ input: SharedApiModels.Operations.GetCartById.Input) async throws -> SharedApiModels.Operations.GetCartById.Output {
-        fatalError()
-    }
-    
-    func getAllCarts(_ input: SharedApiModels.Operations.GetAllCarts.Input) async throws -> SharedApiModels.Operations.GetAllCarts.Output {
-        fatalError()
-    }
-    
-    func loginUser(_ input: SharedApiModels.Operations.LoginUser.Input) async throws -> SharedApiModels.Operations.LoginUser.Output {
-        fatalError()
-    }
-    
+    /**
+
+     1. ApiClient_loginUser.swift - User login
+     2. ApiClient_getAllUsers.swift - Get all users
+     3. ApiClient_getUserById.swift - Get a single user by ID
+     4. ApiClient_createUser.swift - Create a new user
+     5. ApiClient_getAllPosts.swift - Get all posts
+     6. ApiClient_getPostById.swift - Get a single post by ID
+     7. ApiClient_createPost.swift - Create a new post
+     8. ApiClient_getAllProducts.swift - Get all products
+     9. ApiClient_getProductById.swift - Get a single product by ID
+     10. ApiClient_createProduct.swift - Create a new product
+     11. ApiClient_getAllTodos.swift - Get all todos
+     12. ApiClient_getTodoById.swift - Get a single todo by ID
+     13. ApiClient_createTodo.swift - Create a new todo
+     14. ApiClient_getAllComments.swift - Get all comments
+     15. ApiClient_getCommentById.swift - Get a single comment by ID
+     16. ApiClient_getAllCarts.swift - Get all carts
+     17. ApiClient_getCartById.swift - Get a single cart by ID
+     */
 }
