@@ -23,7 +23,9 @@ let package = Package(
         .package(url: "https://github.com/swift-server/swift-openapi-vapor", from: "1.0.0"),
         .package(url: "https://github.com/vapor/vapor", from: "4.89.0"),
         .package(url: "https://github.com/swift-server/swift-openapi-async-http-client", from: "1.0.0"),
-        .package(url: "https://github.com/swift-server/async-http-client", from: "1.19.0")
+        .package(url: "https://github.com/swift-server/async-http-client", from: "1.19.0"),
+        .package(url: "https://github.com/mihaelamj/OpenAPILoggingMiddleware", from: "1.0.0"),
+        .package(url: "https://github.com/mihaelamj/BearerTokenAuthMiddleware", exact: "1.1.0")
     ],
     targets: {
         
@@ -93,7 +95,8 @@ let package = Package(
                 "SharedApiModels",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                .product(name: "OpenAPILoggingMiddleware", package: "OpenAPILoggingMiddleware")
             ]
         )
         
@@ -107,7 +110,9 @@ let package = Package(
             dependencies: [
                 "SharedApiModels",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
-                .product(name: "OpenAPIAsyncHTTPClient", package: "swift-openapi-async-http-client")
+                .product(name: "OpenAPIAsyncHTTPClient", package: "swift-openapi-async-http-client"),
+                .product(name: "OpenAPILoggingMiddleware", package: "OpenAPILoggingMiddleware"),
+                .product(name: "BearerTokenAuthMiddleware", package: "BearerTokenAuthMiddleware")
             ]
         )
         

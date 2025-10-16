@@ -5,6 +5,7 @@ import Vapor
 import OpenAPIRuntime
 import OpenAPIVapor
 import SharedApiModels
+import OpenAPILoggingMiddleware
 
 // Function to print curl commands for each endpoint
 func printCurlCommands() {
@@ -105,6 +106,9 @@ func printCurlCommands() {
 // Create Vapor application.
 let app = try await Application.make()
 
+// Create logging middleware
+let loggingMiddleware = LoggingMiddleware(appName: "DummyJSON", logPrefix: "🖥️ ApiServer: ")
+
 // Create a VaporTransport using that application.
 let transport = VaporTransport(routesBuilder: app)
 
@@ -115,7 +119,7 @@ let handler = ApiHandler()
 //
 //// Call the generated function on the implementation to add its request
 //// handlers to the app.
-try handler.registerHandlers(on: transport, serverURL: Servers.Server1.url())
+try handler.registerHandlers(on: transport, serverURL: Servers.Server1.url(), middlewares: [loggingMiddleware])
 //
 //
 //
