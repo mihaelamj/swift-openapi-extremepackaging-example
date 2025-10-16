@@ -4,34 +4,34 @@ import SharedApiModels
 
 // MARK: - Response Wrapper Types
 
-public struct UserListResponse {
+public struct UserListResponse: Sendable {
     public let users: [Components.Schemas.User]
     public let total: Int
     public let skip: Int
     public let limit: Int
 }
 
-public struct PostListResponse {
+public struct PostListResponse: Sendable {
     public let posts: [Components.Schemas.Post]
     public let total: Int
 }
 
-public struct ProductListResponse {
+public struct ProductListResponse: Sendable {
     public let products: [Components.Schemas.Product]
     public let total: Int
 }
 
-public struct TodoListResponse {
+public struct TodoListResponse: Sendable {
     public let todos: [Components.Schemas.Todo]
     public let total: Int
 }
 
-public struct CommentListResponse {
+public struct CommentListResponse: Sendable {
     public let comments: [Components.Schemas.Comment]
     public let total: Int
 }
 
-public struct CartListResponse {
+public struct CartListResponse: Sendable {
     public let carts: [Components.Schemas.Cart]
     public let total: Int
 }
