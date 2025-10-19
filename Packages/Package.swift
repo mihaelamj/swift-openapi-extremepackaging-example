@@ -24,8 +24,8 @@ let package = Package(
         .package(url: "https://github.com/vapor/vapor", from: "4.89.0"),
         .package(url: "https://github.com/swift-server/swift-openapi-async-http-client", from: "1.0.0"),
         .package(url: "https://github.com/swift-server/async-http-client", from: "1.19.0"),
-        .package(url: "https://github.com/mihaelamj/OpenAPILoggingMiddleware", from: "1.0.0"),
-        .package(url: "https://github.com/mihaelamj/BearerTokenAuthMiddleware", exact: "1.1.0")
+        .package(url: "https://github.com/mihaelamj/OpenAPILoggingMiddleware", from: "1.1.0"),
+        .package(url: "https://github.com/mihaelamj/BearerTokenAuthMiddleware", from: "1.2.0")
     ],
     targets: {
         

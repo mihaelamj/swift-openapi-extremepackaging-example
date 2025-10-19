@@ -15,6 +15,7 @@ This project started as a fork of [ExtremePackaging](https://github.com/mihaelam
   - Comprehensive schema definitions with proper types
   - Pagination support for list endpoints
   - Error response schemas (404, validation errors)
+- **Custom Implementation Note**: This example was built from scratch using [DummyJSON](https://dummyjson.com) as inspiration. All endpoints were added manually by the repository author, but the architecture supports adding any endpoints—feel free to extend with your own API definitions.
 - **Swift OpenAPI Generator** integration for automatic code generation
 - Generated types, client, and server code from the OpenAPI spec
 
@@ -46,6 +47,18 @@ This project started as a fork of [ExtremePackaging](https://github.com/mihaelam
   - Console output via Swift Logging framework
   - Full request/response body logging
   - Unique request IDs for tracing
+
+![OS Log Example](images/oslog.png)
+
+##### Real-Time Log Streaming
+
+**Method 1: Terminal (Recommended for Development)**
+
+Open Terminal and run:
+```bash
+# Stream ALL logs from the middleware in real-time
+log stream --predicate 'subsystem == "com.openapi"' --level debug
+```
 
 #### 4. Convenience API Layer
 - **User-friendly extension methods** (`ApiClient+Convenience.swift`):
